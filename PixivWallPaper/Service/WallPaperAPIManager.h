@@ -11,8 +11,10 @@
 
 @interface WallPaperAPIManager : NSObject
 
-+ (void)getRandomBingWallPaper:(void(^)(WallPaperModel *model))complete;
++ (void)getTodayPixivWallPaper;
 
-+ (void)getNewestBingWallPaper:(void(^)(WallPaperModel *model))complete;
++ (void)getRandomWallPaper:(void(^)(WallPaperModel *model))complete;
+
++ (void)getNewestWallPaper:(void(^)(WallPaperModel *model))complete;
 
 @end

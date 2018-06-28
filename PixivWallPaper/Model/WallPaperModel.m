@@ -8,8 +8,17 @@
 
 #import "WallPaperModel.h"
 
+
 @implementation WallPaperModel
 
+- (void)saveToLocal {
+    [[NSUserDefaults standardUserDefaults] setObject:self.mj_JSONString forKey:WallPaperModelUserDefaultKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
++ (WallPaperModel *)getFromLocal {
+    NSString *jst = [[NSUserDefaults standardUserDefaults] objectForKey:WallPaperModelUserDefaultKey];
+    return [WallPaperModel mj_objectWithKeyValues:jst];
+}
 
 @end

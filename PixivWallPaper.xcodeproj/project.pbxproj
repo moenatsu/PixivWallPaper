@@ -11,6 +11,23 @@
 		1CE0FF7920E31E270048E536 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CE0FF7820E31E270048E536 /* Assets.xcassets */; };
 		1CE0FF7C20E31E270048E536 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CE0FF7A20E31E270048E536 /* MainMenu.xib */; };
 		1CE0FF7F20E31E270048E536 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FF7E20E31E270048E536 /* main.m */; };
+		1CE0FF8F20E32B060048E536 /* UserNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FF8E20E32B060048E536 /* UserNotificationHelper.m */; };
+		1CE0FF9220E32B210048E536 /* StartupHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FF9120E32B210048E536 /* StartupHelper.m */; };
+		1CE0FF9520E32B620048E536 /* WallPaperModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FF9420E32B620048E536 /* WallPaperModel.m */; };
+		1CE0FF9820E32C4E0048E536 /* WallPaperService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FF9720E32C4E0048E536 /* WallPaperService.m */; };
+		1CE0FF9A20E32E930048E536 /* WallPaperAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FF9920E32E930048E536 /* WallPaperAPIManager.m */; };
+		1CE0FF9E20E32EAB0048E536 /* WallPaperDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FF9D20E32EAB0048E536 /* WallPaperDownloader.m */; };
+		1CE0FFB520E3313E0048E536 /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FFA320E3313E0048E536 /* MJPropertyType.m */; };
+		1CE0FFB620E3313E0048E536 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FFA620E3313E0048E536 /* NSObject+MJKeyValue.m */; };
+		1CE0FFB720E3313E0048E536 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FFA720E3313E0048E536 /* MJProperty.m */; };
+		1CE0FFB820E3313E0048E536 /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FFA920E3313E0048E536 /* NSObject+MJCoding.m */; };
+		1CE0FFB920E3313E0048E536 /* MJExtensionConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FFAB20E3313E0048E536 /* MJExtensionConst.m */; };
+		1CE0FFBA20E3313E0048E536 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FFAC20E3313E0048E536 /* NSObject+MJProperty.m */; };
+		1CE0FFBB20E3313E0048E536 /* NSObject+MJClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FFAE20E3313E0048E536 /* NSObject+MJClass.m */; };
+		1CE0FFBC20E3313E0048E536 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FFAF20E3313E0048E536 /* NSString+MJExtension.m */; };
+		1CE0FFBD20E3313E0048E536 /* MJPropertyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FFB020E3313E0048E536 /* MJPropertyKey.m */; };
+		1CE0FFBE20E3313E0048E536 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FFB420E3313E0048E536 /* MJFoundation.m */; };
+		1CE0FFC220E335370048E536 /* NSDate+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE0FFC120E335370048E536 /* NSDate+Ext.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +39,43 @@
 		1CE0FF7D20E31E270048E536 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CE0FF7E20E31E270048E536 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1CE0FF8020E31E270048E536 /* PixivWallPaper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PixivWallPaper.entitlements; sourceTree = "<group>"; };
+		1CE0FF8D20E32B060048E536 /* UserNotificationHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserNotificationHelper.h; sourceTree = "<group>"; };
+		1CE0FF8E20E32B060048E536 /* UserNotificationHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserNotificationHelper.m; sourceTree = "<group>"; };
+		1CE0FF9020E32B210048E536 /* StartupHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartupHelper.h; sourceTree = "<group>"; };
+		1CE0FF9120E32B210048E536 /* StartupHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartupHelper.m; sourceTree = "<group>"; };
+		1CE0FF9320E32B620048E536 /* WallPaperModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPaperModel.h; sourceTree = "<group>"; };
+		1CE0FF9420E32B620048E536 /* WallPaperModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallPaperModel.m; sourceTree = "<group>"; };
+		1CE0FF9620E32C4E0048E536 /* WallPaperService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPaperService.h; sourceTree = "<group>"; };
+		1CE0FF9720E32C4E0048E536 /* WallPaperService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WallPaperService.m; sourceTree = "<group>"; };
+		1CE0FF9920E32E930048E536 /* WallPaperAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallPaperAPIManager.m; sourceTree = "<group>"; };
+		1CE0FF9B20E32E9B0048E536 /* WallPaperAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPaperAPIManager.h; sourceTree = "<group>"; };
+		1CE0FF9C20E32EA20048E536 /* WallPaperDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallPaperDownloader.h; sourceTree = "<group>"; };
+		1CE0FF9D20E32EAB0048E536 /* WallPaperDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallPaperDownloader.m; sourceTree = "<group>"; };
+		1CE0FFA020E3313E0048E536 /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
+		1CE0FFA120E3313E0048E536 /* NSObject+MJClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJClass.h"; sourceTree = "<group>"; };
+		1CE0FFA220E3313E0048E536 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
+		1CE0FFA320E3313E0048E536 /* MJPropertyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPropertyType.m; sourceTree = "<group>"; };
+		1CE0FFA420E3313E0048E536 /* NSObject+MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJProperty.h"; sourceTree = "<group>"; };
+		1CE0FFA520E3313E0048E536 /* MJExtensionConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtensionConst.h; sourceTree = "<group>"; };
+		1CE0FFA620E3313E0048E536 /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
+		1CE0FFA720E3313E0048E536 /* MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJProperty.m; sourceTree = "<group>"; };
+		1CE0FFA820E3313E0048E536 /* MJFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJFoundation.h; sourceTree = "<group>"; };
+		1CE0FFA920E3313E0048E536 /* NSObject+MJCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJCoding.m"; sourceTree = "<group>"; };
+		1CE0FFAA20E3313E0048E536 /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
+		1CE0FFAB20E3313E0048E536 /* MJExtensionConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJExtensionConst.m; sourceTree = "<group>"; };
+		1CE0FFAC20E3313E0048E536 /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
+		1CE0FFAD20E3313E0048E536 /* MJPropertyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyType.h; sourceTree = "<group>"; };
+		1CE0FFAE20E3313E0048E536 /* NSObject+MJClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJClass.m"; sourceTree = "<group>"; };
+		1CE0FFAF20E3313E0048E536 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
+		1CE0FFB020E3313E0048E536 /* MJPropertyKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPropertyKey.m; sourceTree = "<group>"; };
+		1CE0FFB120E3313E0048E536 /* MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJProperty.h; sourceTree = "<group>"; };
+		1CE0FFB220E3313E0048E536 /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
+		1CE0FFB320E3313E0048E536 /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
+		1CE0FFB420E3313E0048E536 /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
+		1CE0FFC020E335370048E536 /* NSDate+Ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Ext.h"; sourceTree = "<group>"; };
+		1CE0FFC120E335370048E536 /* NSDate+Ext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Ext.m"; sourceTree = "<group>"; };
+		1CE0FFC320E3362E0048E536 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		1CE0FFC420E336450048E536 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +110,82 @@
 			children = (
 				1CE0FF7520E31E260048E536 /* AppDelegate.h */,
 				1CE0FF7620E31E260048E536 /* AppDelegate.m */,
-				1CE0FF7820E31E270048E536 /* Assets.xcassets */,
+				1CE0FF9F20E3313E0048E536 /* MJExtension */,
+				1CE0FF8720E320C70048E536 /* Common */,
+				1CE0FF8920E321250048E536 /* Service */,
+				1CE0FF8820E320EA0048E536 /* Model */,
 				1CE0FF7A20E31E270048E536 /* MainMenu.xib */,
 				1CE0FF7D20E31E270048E536 /* Info.plist */,
 				1CE0FF7E20E31E270048E536 /* main.m */,
+				1CE0FFC420E336450048E536 /* PrefixHeader.pch */,
+				1CE0FF7820E31E270048E536 /* Assets.xcassets */,
 				1CE0FF8020E31E270048E536 /* PixivWallPaper.entitlements */,
 			);
 			path = PixivWallPaper;
+			sourceTree = "<group>";
+		};
+		1CE0FF8720E320C70048E536 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1CE0FF8D20E32B060048E536 /* UserNotificationHelper.h */,
+				1CE0FF8E20E32B060048E536 /* UserNotificationHelper.m */,
+				1CE0FF9020E32B210048E536 /* StartupHelper.h */,
+				1CE0FF9120E32B210048E536 /* StartupHelper.m */,
+				1CE0FFC020E335370048E536 /* NSDate+Ext.h */,
+				1CE0FFC120E335370048E536 /* NSDate+Ext.m */,
+				1CE0FFC320E3362E0048E536 /* Constant.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		1CE0FF8820E320EA0048E536 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1CE0FF9320E32B620048E536 /* WallPaperModel.h */,
+				1CE0FF9420E32B620048E536 /* WallPaperModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1CE0FF8920E321250048E536 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1CE0FF9620E32C4E0048E536 /* WallPaperService.h */,
+				1CE0FF9720E32C4E0048E536 /* WallPaperService.m */,
+				1CE0FF9B20E32E9B0048E536 /* WallPaperAPIManager.h */,
+				1CE0FF9920E32E930048E536 /* WallPaperAPIManager.m */,
+				1CE0FF9C20E32EA20048E536 /* WallPaperDownloader.h */,
+				1CE0FF9D20E32EAB0048E536 /* WallPaperDownloader.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		1CE0FF9F20E3313E0048E536 /* MJExtension */ = {
+			isa = PBXGroup;
+			children = (
+				1CE0FFA020E3313E0048E536 /* MJPropertyKey.h */,
+				1CE0FFA120E3313E0048E536 /* NSObject+MJClass.h */,
+				1CE0FFA220E3313E0048E536 /* NSString+MJExtension.h */,
+				1CE0FFA320E3313E0048E536 /* MJPropertyType.m */,
+				1CE0FFA420E3313E0048E536 /* NSObject+MJProperty.h */,
+				1CE0FFA520E3313E0048E536 /* MJExtensionConst.h */,
+				1CE0FFA620E3313E0048E536 /* NSObject+MJKeyValue.m */,
+				1CE0FFA720E3313E0048E536 /* MJProperty.m */,
+				1CE0FFA820E3313E0048E536 /* MJFoundation.h */,
+				1CE0FFA920E3313E0048E536 /* NSObject+MJCoding.m */,
+				1CE0FFAA20E3313E0048E536 /* MJExtension.h */,
+				1CE0FFAB20E3313E0048E536 /* MJExtensionConst.m */,
+				1CE0FFAC20E3313E0048E536 /* NSObject+MJProperty.m */,
+				1CE0FFAD20E3313E0048E536 /* MJPropertyType.h */,
+				1CE0FFAE20E3313E0048E536 /* NSObject+MJClass.m */,
+				1CE0FFAF20E3313E0048E536 /* NSString+MJExtension.m */,
+				1CE0FFB020E3313E0048E536 /* MJPropertyKey.m */,
+				1CE0FFB120E3313E0048E536 /* MJProperty.h */,
+				1CE0FFB220E3313E0048E536 /* NSObject+MJKeyValue.h */,
+				1CE0FFB320E3313E0048E536 /* NSObject+MJCoding.h */,
+				1CE0FFB420E3313E0048E536 /* MJFoundation.m */,
+			);
+			path = MJExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +219,11 @@
 				TargetAttributes = {
 					1CE0FF7120E31E260048E536 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -134,8 +262,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CE0FFBE20E3313E0048E536 /* MJFoundation.m in Sources */,
+				1CE0FF9520E32B620048E536 /* WallPaperModel.m in Sources */,
+				1CE0FF9820E32C4E0048E536 /* WallPaperService.m in Sources */,
+				1CE0FFB920E3313E0048E536 /* MJExtensionConst.m in Sources */,
+				1CE0FF9E20E32EAB0048E536 /* WallPaperDownloader.m in Sources */,
+				1CE0FFB620E3313E0048E536 /* NSObject+MJKeyValue.m in Sources */,
+				1CE0FF8F20E32B060048E536 /* UserNotificationHelper.m in Sources */,
+				1CE0FFBA20E3313E0048E536 /* NSObject+MJProperty.m in Sources */,
+				1CE0FFB520E3313E0048E536 /* MJPropertyType.m in Sources */,
+				1CE0FFC220E335370048E536 /* NSDate+Ext.m in Sources */,
+				1CE0FFB820E3313E0048E536 /* NSObject+MJCoding.m in Sources */,
+				1CE0FFB720E3313E0048E536 /* MJProperty.m in Sources */,
 				1CE0FF7F20E31E270048E536 /* main.m in Sources */,
+				1CE0FF9A20E32E930048E536 /* WallPaperAPIManager.m in Sources */,
+				1CE0FFBD20E3313E0048E536 /* MJPropertyKey.m in Sources */,
+				1CE0FFBB20E3313E0048E536 /* NSObject+MJClass.m in Sources */,
+				1CE0FFBC20E3313E0048E536 /* NSString+MJExtension.m in Sources */,
 				1CE0FF7720E31E260048E536 /* AppDelegate.m in Sources */,
+				1CE0FF9220E32B210048E536 /* StartupHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,15 +411,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = PixivWallPaper/PixivWallPaper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4Q8MJ365EM;
+				GCC_PREFIX_HEADER = PixivWallPaper/PrefixHeader.pch;
 				INFOPLIST_FILE = PixivWallPaper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.natsu.PixivWallPaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -284,15 +430,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = PixivWallPaper/PixivWallPaper.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 4Q8MJ365EM;
+				GCC_PREFIX_HEADER = PixivWallPaper/PrefixHeader.pch;
 				INFOPLIST_FILE = PixivWallPaper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.natsu.PixivWallPaper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -7,49 +7,81 @@
 //
 
 #import "WallPaperAPIManager.h"
-
-
-static NSString *BingHost = @"http://www.bing.com";
-static NSString *BingWallPaper = @"http://www.bing.com/HPImageArchive.aspx";
+#import "WallPaperModel.h"
+#import "NSDate+Ext.h"
 
 @implementation WallPaperAPIManager
 
-+ (void)getRandomBingWallPaper:(void(^)(WallPaperModel *model))complete {
-    NSURLComponents *urlComponent = [NSURLComponents componentsWithString:BingWallPaper];
-    int idx = arc4random_uniform(16) - 1;
-    urlComponent.queryItems = @[
-                                [NSURLQueryItem queryItemWithName:@"format" value:@"js"],
-                                [NSURLQueryItem queryItemWithName:@"idx" value:@(idx).stringValue],
-                                [NSURLQueryItem queryItemWithName:@"n" value:@"1"],
-                                ];
-    [self getBingWallPaperWithUrl:urlComponent.URL complete:complete];
++ (void)getTodayPixivWallPaper {
+    
+    NSLog(@"start get today wallpaper...");
+    [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:PixivHost] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"get today wallpaper complete!");
+        if (data.length > 0) {
+            NSString *htmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSString *regularStr = @"\\{\"pixivBackgroundSlideshow.*\\}\\]\\}\\}";
+            NSRange range = [htmlString rangeOfString:regularStr options:NSRegularExpressionSearch];
+            if (range.location < htmlString.length) {
+                NSString *jsonString = [htmlString substringWithRange:range];
+                NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary *imgUrlDic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                    options:NSJSONReadingMutableContainers
+                                                                      error:&error];
+                NSArray *imgsArr = imgUrlDic[@"pixivBackgroundSlideshow.illusts"][@"landscape"];
+                if (error) {
+                    NSLog(@"getTodayPixivWallPaper error : %@", error);
+                }
+                else {
+                    [[NSUserDefaults standardUserDefaults] setObject:imgsArr forKey:TodayPixivWallPaperURLKey];
+                    [[NSUserDefaults standardUserDefaults] setObject:[NSDate currentDateString] forKey:TodayDateString];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:GetTodayPixivSuccessNotification object:nil];
+                }
+                
+            }
+        }
+        
+    }] resume];
 }
 
-+ (void)getNewestBingWallPaper:(void(^)(WallPaperModel *model))complete {
++ (void)getRandomWallPaper:(void(^)(WallPaperModel *model))complete {
     
-    NSURLComponents *urlComponent = [NSURLComponents componentsWithString:BingWallPaper];
-    urlComponent.queryItems = @[
-                                [NSURLQueryItem queryItemWithName:@"format" value:@"js"],
-                                [NSURLQueryItem queryItemWithName:@"idx" value:@"-1"],
-                                [NSURLQueryItem queryItemWithName:@"n" value:@"1"],
-                                ];
-    [self getBingWallPaperWithUrl:urlComponent.URL complete:complete];
-    
+    NSArray *models = [WallPaperModel mj_objectArrayWithKeyValuesArray:[[NSUserDefaults standardUserDefaults] objectForKey:TodayPixivWallPaperURLKey]];
+    if (models.count > 0) {
+        int idx = arc4random_uniform((int)models.count);
+        complete(models[idx]);
+    }
+    else {
+        complete(nil);
+    }
 }
 
-+ (void)getBingWallPaperWithUrl:(NSURL *)url complete:(void(^)(WallPaperModel *model))complete {
-    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-        if ([json[@"images"] count] > 0) {
-            WallPaperModel *model = [WallPaperModel new];
-            [model setValuesForKeysWithDictionary:[json[@"images"] firstObject]];
-            complete(model);
++ (void)getNewestWallPaper:(void(^)(WallPaperModel *model))complete {
+    
+    NSString *saveDate = [[NSUserDefaults standardUserDefaults] objectForKey:TodayDateString];
+    if ([saveDate isEqualToString:[NSDate currentDateString]]) {
+        NSArray *models = [WallPaperModel mj_objectArrayWithKeyValuesArray:[[NSUserDefaults standardUserDefaults] objectForKey:TodayPixivWallPaperURLKey]];
+        if (models.count > 0) {
+            NSLog(@"No update required !");
+            WallPaperModel *savemodel = [WallPaperModel getFromLocal];
+            if (savemodel) {
+                complete(savemodel);
+            }
+            else {
+                complete(models.firstObject);                
+            }
         }
         else {
+            [self getTodayPixivWallPaper];
             complete(nil);
         }
-    }];
-    [task resume];
+    }
+    else {
+        [self getTodayPixivWallPaper];
+    }
+    
+    
 }
+
 
 @end

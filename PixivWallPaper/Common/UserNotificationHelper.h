@@ -10,4 +10,8 @@
 
 @interface UserNotificationHelper : NSObject
 
++ (void)showWallPaperUpdateInfoWithModel;
+
++ (void)show:(NSString *)title subTitle:(NSString *)subTitle content:(NSString *)content;
+
 @end

@@ -9,11 +9,14 @@
 #import "AppDelegate.h"
 #import "WallPaperService.h"
 #import "UserNotificationHelper.h"
+#import "StartupHelper.h"
 
 @interface AppDelegate () {
     NSStatusItem *_statusItem;
     NSMenuItem *_autoUpdateMenuItem;
     NSMenuItem *_launchAtStartupMenuItem;
+    NSMenuItem *_carouselMenuItem;
+    NSTimer *_carouselTimer;
 }
 
 @property (weak) IBOutlet NSWindow *window;
@@ -33,7 +36,7 @@
     NSMenu *menu = [[NSMenu alloc] init];
     [menu addItemWithTitle:@"更新" action:@selector(menuItemNewestWallPaperClick) keyEquivalent:@"n"];
     [menu addItemWithTitle:@"随机" action:@selector(menuItemRandomWallPaperClick) keyEquivalent:@"r"];
-    
+
     NSMenu *subMenu = [NSMenu new];
     
     _autoUpdateMenuItem = [[NSMenuItem alloc] initWithTitle:@"自动更新" action:@selector(menuItemAutoUpdateClick) keyEquivalent:@""];
@@ -43,22 +46,22 @@
     _autoUpdateMenuItem.state = [WallPaperService sharedInstance].currentAutoUpadteSwitchState;
     [subMenu addItem:_autoUpdateMenuItem];
     
+    _carouselMenuItem = [[NSMenuItem alloc] initWithTitle:@"轮播" action:@selector(menuItemCarouselWallPaperClick) keyEquivalent:@""];
+    _carouselMenuItem.toolTip = @"自动轮播壁纸";
+    _carouselMenuItem.onStateImage = [NSImage imageNamed:@"checked"];
+    _carouselMenuItem.offStateImage = nil;
+    _carouselMenuItem.state = [[NSUserDefaults standardUserDefaults] boolForKey:CarouselSwitchUserDefaultKey];
+    [self checkCarousel];
+    [subMenu addItem:_carouselMenuItem];
+    
     _launchAtStartupMenuItem = [[NSMenuItem alloc] initWithTitle:@"开机自启" action:@selector(menuItemLaunchAtStartupClick) keyEquivalent:@""];
     _launchAtStartupMenuItem.toolTip = @"开机时启动PixivWallPaper";
     _launchAtStartupMenuItem.onStateImage = [NSImage imageNamed:@"checked"];
     _launchAtStartupMenuItem.offStateImage = nil;
+    _launchAtStartupMenuItem.state = [[NSUserDefaults standardUserDefaults] boolForKey:StartupSwitchUserDefaultKey];
     [subMenu addItem:_launchAtStartupMenuItem];
     
     [subMenu addItemWithTitle:@"打开壁纸目录" action:@selector(menuItemOpenWallPapersFolderClick) keyEquivalent:@""];
-    
-    // Copyright
-    [subMenu addItemWithTitle:@"Copyright" action:@selector(menuItemCopyrightClick) keyEquivalent:@""];
-    
-    // Github
-    [subMenu addItemWithTitle:@"Github" action:@selector(menuItemGithubClick) keyEquivalent:@""];
-    
-    // About
-    [subMenu addItemWithTitle:@"About" action:@selector(menuItemAboutClick) keyEquivalent:@""];
     
     // More
     NSMenuItem *subMenuItem = [[NSMenuItem alloc] init];
@@ -74,35 +77,109 @@
 }
 
 
-//- (void)menuItemLaunchAtStartupClick {
-//    StartupHelper.toggleLaunchAtStartup()
-//    updateLaunchAtStartupMenuItemState()
-//
-//    UserNotificationHelper.show("Config changed !", subTitle: "Launch at startup: \(StartupHelper.applicationIsInStartUpItems() ? "ON" : "OFF")", content: "")
-//}
+- (void)menuItemLaunchAtStartupClick {
+    BOOL state = [[NSUserDefaults standardUserDefaults] boolForKey:StartupSwitchUserDefaultKey];
+    _launchAtStartupMenuItem.state = !state;
+    if (_launchAtStartupMenuItem.state) {
+        [StartupHelper installDaemon];
+    }
+    else {
+        [StartupHelper unInstallDaemon];
+    }
+    [[NSUserDefaults standardUserDefaults] setBool:_launchAtStartupMenuItem.state forKey:StartupSwitchUserDefaultKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 
 - (void)menuItemAutoUpdateClick {
     BOOL state = [WallPaperService sharedInstance].currentAutoUpadteSwitchState;
-    
-    [UserNotificationHelper show:@"Config changed !" subTitle:[NSString stringWithFormat:@"Auto update: %@", state ? @"ON" : @"OFF"] content:@""];
-    
-    [WallPaperService sharedInstance].currentAutoUpadteSwitchState = !state;
+    _autoUpdateMenuItem.state = [WallPaperService sharedInstance].currentAutoUpadteSwitchState = !state;
     [[WallPaperService sharedInstance] checkIfNeedUpdateWallPaper];
-    
-    _autoUpdateMenuItem.state = [WallPaperService sharedInstance].currentAutoUpadteSwitchState ? 1 : 0;
 }
 
 - (void)menuItemNewestWallPaperClick {
     [[WallPaperService sharedInstance] updateAndSetNewestWallPaper:^(BOOL success) {
-        [UserNotificationHelper showWallPaperUpdateInfoWithModel];
+        if (success) {
+            [UserNotificationHelper showWallPaperUpdateInfoWithModel];
+        }
     }];
 }
 
 - (void)menuItemRandomWallPaperClick {
     [[WallPaperService sharedInstance] updateAndSetRandomWallPaper:^(BOOL success) {
-        [UserNotificationHelper showWallPaperUpdateInfoWithModel];
+        if (success) {
+            [UserNotificationHelper showWallPaperUpdateInfoWithModel];
+        }
     }];
+}
+
+- (void)menuItemCarouselWallPaperClick {
+    
+    BOOL state = [[NSUserDefaults standardUserDefaults] boolForKey:CarouselSwitchUserDefaultKey];
+    
+    if (!state) {
+        NSArray *timeArrs = @[@60,@600,@3600];
+        NSComboBox *cb = [[NSComboBox alloc] initWithFrame:NSMakeRect(0, 0, 100, 26)];
+        [cb addItemWithObjectValue:@"1分钟"];
+        [cb addItemWithObjectValue:@"10分钟"];
+        [cb addItemWithObjectValue:@"1小时"];
+        id t = [[NSUserDefaults standardUserDefaults] objectForKey:CarouselTime];
+        if ([timeArrs containsObject:t]) {
+            [cb selectItemAtIndex:[timeArrs indexOfObject:t]];
+        }
+        else {
+            [cb selectItemAtIndex:0];
+        }
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.accessoryView = cb;
+        alert.alertStyle = NSAlertStyleInformational;
+        alert.messageText = @"请输入时间间隔";
+        [alert addButtonWithTitle:@"确定"];
+        [alert addButtonWithTitle:@"取消"];
+        NSUInteger action = [alert runModal];
+        
+        if(action == NSAlertFirstButtonReturn) {
+            _carouselMenuItem.state = !state;
+            [[NSUserDefaults standardUserDefaults] setBool:_carouselMenuItem.state forKey:CarouselSwitchUserDefaultKey];
+            [[NSUserDefaults standardUserDefaults] setObject:timeArrs[cb.indexOfSelectedItem] forKey:CarouselTime];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self checkCarousel];
+        }
+        else {
+            return;
+        }
+    }
+    else {
+        _carouselMenuItem.state = !state;
+        [[NSUserDefaults standardUserDefaults] setBool:_carouselMenuItem.state forKey:CarouselSwitchUserDefaultKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self checkCarousel];
+    }
+    
+    
+//    [self checkCarousel];
+}
+
+- (void)checkCarousel {
+    if (_carouselMenuItem.state) {
+        NSTimeInterval t = [[NSUserDefaults standardUserDefaults] doubleForKey:CarouselTime];
+        if (t < 60) {
+            t = 60;
+            [[NSUserDefaults standardUserDefaults] setDouble:t forKey:CarouselTime];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        _carouselTimer = [NSTimer scheduledTimerWithTimeInterval:t repeats:YES block:^(NSTimer * _Nonnull timer) {
+            [[WallPaperService sharedInstance] updateAndSetRandomWallPaper:^(BOOL success) {
+//                if (success) {
+//                    [UserNotificationHelper showWallPaperUpdateInfoWithModel];
+//                }
+            }];
+        }];
+    }
+    else {
+        [_carouselTimer invalidate];
+        _carouselTimer = nil;
+    }
 }
 
 - (void)menuItemOpenWallPapersFolderClick {
@@ -110,51 +187,9 @@
     [[NSWorkspace sharedWorkspace] openURL:folderPath];
 }
 
-//- (void)menuItemCopyrightClick {
-//    if let copyrightUrl = URL(string: WallPaperSevice.sharedInstance.currentModel?.copyRightUrl ?? WallPaperAPIManager.BingHost) {
-//        NSWorkspace.shared().open(copyrightUrl)
-//    }
-//}
-
-//- (void)menuItemGithubClick {
-//    if let githubUrl = URL(string: "https://github.com/zekunyan/TTGBingWallPaper") {
-//        NSWorkspace.shared().open(githubUrl)
-//    }
-//}
-
-//- (void)menuItemAboutClick {
-//    let contentTextView = NSTextView()
-//
-//    contentTextView.frame = CGRect(x: 0, y: 0, width: 300, height: 60)
-//    contentTextView.string = "By tutuge.\nEmail: zekunyan@163.com\nGithub: https://github.com/zekunyan"
-//    contentTextView.sizeToFit()
-//
-//    contentTextView.drawsBackground = false
-//    contentTextView.font = NSFont.systemFont(ofSize: 14)
-//
-//    contentTextView.isEditable = true
-//    contentTextView.enabledTextCheckingTypes = NSTextCheckingAllTypes
-//    contentTextView.checkTextInDocument(nil)
-//    contentTextView.isEditable = false
-//
-//    let alert = NSAlert()
-//    let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-//
-//    alert.icon = NSImage(named: "AppIcon")
-//    alert.messageText = "BingWallPaper \(version)"
-//    alert.accessoryView = contentTextView
-//    alert.alertStyle = .informational
-//    alert.runModal()
-//}
-
 - (void)menuItemQuitClick {
     [[NSApplication sharedApplication] terminate:nil];
 }
 
-// MARK: NSWorkspaceDidWakeNotification
-
-//- (void)didWakeFromSleep {
-//    [[WallPaperService sharedInstance] checkIfNeedUpdateWallPaper];
-//}
 
 @end

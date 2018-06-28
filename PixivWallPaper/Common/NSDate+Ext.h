@@ -10,4 +10,6 @@
 
 @interface NSDate (Ext)
 
++ (NSString *)currentDateString;
+
 @end

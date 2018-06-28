@@ -10,4 +10,8 @@
 
 @interface StartupHelper : NSObject
 
++ (void)installDaemon;
+
++ (void)unInstallDaemon;
+
 @end

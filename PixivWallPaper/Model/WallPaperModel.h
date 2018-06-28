@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MJExtension.h"
 
 @interface WallPaperModel : NSObject
 
@@ -17,5 +18,9 @@
 @property (nonatomic, strong) NSDictionary *profile_img;
 @property (nonatomic, copy) NSString *www_member_illust_medium_url;
 @property (nonatomic, copy) NSString *www_user_url;
+
+- (void)saveToLocal;
+
++ (WallPaperModel *)getFromLocal;
 
 @end
