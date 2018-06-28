@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icon_16x16.png",
+      "filename" : "pixiv_logo-1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icon_16x16@2x.png",
+      "filename" : "pixiv_logo.png",
       "scale" : "2x"
     },
     {

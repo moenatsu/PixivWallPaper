@@ -32,6 +32,7 @@
 - (void)setupUI {
     _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
     _statusItem.button.image = [NSImage imageNamed:@"menu_icon"];
+    _statusItem.button.imageScaling = NSImageScaleProportionallyDown;
     
     NSMenu *menu = [[NSMenu alloc] init];
     [menu addItemWithTitle:@"更新" action:@selector(menuItemNewestWallPaperClick) keyEquivalent:@"n"];
